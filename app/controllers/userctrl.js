@@ -1,9 +1,9 @@
 import UserInfo from '../models/userinfo'
 
-class User {
+class UserCtrl {
   static async login() {
     return ''
   }
 }
 
-export default User
+export default UserCtrl;

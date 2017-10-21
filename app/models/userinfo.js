@@ -6,7 +6,7 @@ let userSchema = new mongoose.Schema({
   name: String,
   passwd: String,
   status: String,
-  uk: [],
+  uks: [],
   level: Number,
   createTime : {type : Date, default: Date.now},
   lastLogin : {type : Date, default: Date.now},

@@ -1,15 +1,12 @@
 import Router from 'koa-router'
 
-import Pan from './controllers/pan'
-import User from './controllers/user'
+import {PanCtrl,UserCtrl} from './controllers'
 
 const router = Router({
     prefix: '/api'
 })
 
-router.get('/info/:uk', async (ctx) => {
-    const uk = ctx.params.uk || ''
-    ctx.body = await Pan.info(uk)
-})
+router.get('/userinfo', PanCtrl.userinfo)
+router.get('/filelist', PanCtrl.filelist)
 
 export default router
