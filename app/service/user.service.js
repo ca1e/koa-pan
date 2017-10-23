@@ -2,25 +2,18 @@ import UserAPI from '../rest/userapi'
 
 class UserService {
   static async login(username, password) {
-    let result = {errno: -1, msg: 'some error occur'}
+    let result = 3
     try{
-      const user = await UserAPI.userinfo(username, password)
-      if(user != 1){
-        result = user
-      }else{
-        result = {errno: -3, msg: 'bad user or password'}
-      }
+      result = await UserAPI.userinfo(username, password)
     }catch(e){console.error(e)
     }
     return result
   }
-  static async userlist(user) {
-    let result = {errno: -1, msg: 'some error occur'}
+  static async userlist(username) {
+    let result = []
     try{
-      if(user!={}){
-        const uks = await UserAPI.getUks(user)
-        result = uks
-      }
+      const uks = await UserAPI.ukinfos(username)
+      result = uks
     }catch(e){console.error(e)
     }
     return result

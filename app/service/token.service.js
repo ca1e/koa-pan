@@ -3,16 +3,19 @@ import Mock from '../models/mock'
 class TokenService {
   static async token2user(token) {
     const username = new Buffer(token, 'base64').toString()
-    const user = Mock.getuserbyname(username)
-    return user
+    const user = Mock.finduserbyname(username)
+    return user ? username : null
   }
-  static async user2token(user) {
-    const username = user.name
+  static async user2token(username) {
     const token = new Buffer(username).toString('base64')
-    return {errno: 0, token: token}
+    return token
   }
-  static async getbdinfo(user, uk) {
-    const bdinfo = Mock.getuk(uk)
+  static async getbdinfo(username, uk) {
+    let bdinfo = 3
+    const user = Mock.finduserbyname(username)
+    if(user.uks.filter(u=>u === uk)>0){
+      bdinfo = Mock.finduk(uk)
+    }
     return bdinfo
   }
 }
