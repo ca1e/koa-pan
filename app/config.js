@@ -5,3 +5,5 @@ export const db = {
     user: 'dbuser',
     pass: 'dbpass'
 }
+
+export const sec_key = 'my secret appkey!!!DFNU$#@R(*EW3g#$@R)(F)(sdfg@K$)MU@#%RH*FdhgUS';

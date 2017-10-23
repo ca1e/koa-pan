@@ -1,5 +1,5 @@
 import ResponseInfo from '../lib/response.info'
-import {COMMON_ERROR, USER_ERROR, FILE_ERROR} from '../lib/errormsg'
+import { COMMON_ERROR, USER_ERROR, FILE_ERROR } from '../lib/errormsg'
 import PanService from '../service/pan.service'
 import TokenService from '../service/token.service'
 

@@ -19,7 +19,7 @@ class PanService {
     let result = 2
     try {
       result = await PanAPI.list(bdinfo.cookie, path)
-      result = result.list ? {list: result.list} : 2
+      result = result.list ? { list: result.list } : 2
     }catch (e) {console.error(e)
     }
     return result

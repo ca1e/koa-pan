@@ -19,7 +19,7 @@ class UserAPI{
   static async ukinfos(name) {
     let rlt =[]
     const user = Mock.finduserbyname(name)
-    rlt = user.uks.map(uk=>{return {Uk: uk}})
+    rlt = user.uks.map(uk=>{ return { Uk: uk }} )
     return rlt
   }
 }
