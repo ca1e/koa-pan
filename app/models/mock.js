@@ -1,4 +1,4 @@
-const g_users = [
+let g_users = [
   {
     name: 'admin',
     passwd: '123456',
@@ -6,7 +6,7 @@ const g_users = [
   }
 ]
 
-const g_bds = [
+let g_bds = [
   {
     uk:'xxx',
     cookie: 'BBQAAAAAAAAAAAAAAAAAAAAAA',
@@ -14,6 +14,15 @@ const g_bds = [
 ]
 
 class Mock {
+  static adduser(username, passwd) {
+    const user = {
+      name: username,
+      passwd: passwd,
+      uks: []
+    }
+    g_users.push(user)
+    return 0
+  }
   static finduserbyname(username) {
     let user = null
     const users = g_users.filter(u=>u.name === username)

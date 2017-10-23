@@ -4,9 +4,12 @@ const COMMON_ERROR = {
 }
 
 const USER_ERROR = {
+  0: '成功',
   1: 'token错误',
   2: '密码错误',
-  3: '此用户不存在'
+  3: '此用户不存在',
+  4: '此用户已存在',
+  99: '内部错误'
 }
 
 const FILE_ERROR = {
