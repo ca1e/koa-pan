@@ -11,7 +11,8 @@ const USER_ERROR = {
 
 const FILE_ERROR = {
   2: 'cookie失效',
-  3: '不存在的用户'
+  3: '不存在的用户',
+  4: '获取目录失败，服务器返回错误代码 -9'
 }
 
 export {

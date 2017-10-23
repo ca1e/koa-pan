@@ -7,10 +7,14 @@ class PanService {
       let userinfo = await PanAPI.user_getinfo(bdinfo.cookie, bdinfo.uk)
       const quota = await PanAPI.quota(bdinfo.cookie)
       userinfo = userinfo.records[0]
-      result = {
-        quota: quota,
-        userinfo: userinfo
-      }
+      result = {}
+      result.avatar_url = userinfo.avatar_url
+      result.errno = quota.errno
+      result.free = quota.free
+      result.nick_name = userinfo.nick_name
+      result.used = quota.used
+      result.total = quota.total
+      result.username = userinfo.uname
     }catch (e) {console.error(e)
     }
     return result
@@ -19,7 +23,11 @@ class PanService {
     let result = 2
     try {
       result = await PanAPI.list(bdinfo.cookie, path)
-      result = result.list ? { list: result.list } : 2
+      if(result.errno === 0) {
+        result = result.list ? { list: result.list } : result
+      }else{
+        result = 4
+      }
     }catch (e) {console.error(e)
     }
     return result

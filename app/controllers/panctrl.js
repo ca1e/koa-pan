@@ -19,7 +19,8 @@ class PanCtrl {
         ctx.body = ResponseInfo.failedresponse(result, USER_ERROR[result])
       }else{
         const bdinfo = await TokenService.getbdinfo(username, uk)
-        if(typeof bdinfo === 'object'){
+        console.log(bdinfo)
+        if(typeof bdinfo === 'object') {
           const info = await PanService.getinfo(bdinfo)
           if(typeof info === 'object') {
             ctx.body = ResponseInfo.successresponse(info)
@@ -52,7 +53,6 @@ class PanCtrl {
         const bdinfo = await TokenService.getbdinfo(username, uk)
         if(typeof bdinfo === 'object'){
           const info = await PanService.getlist(bdinfo, path)
-          console.log(info)
           if(typeof info === 'object') {
             ctx.body = ResponseInfo.successresponse(info)
           }else{

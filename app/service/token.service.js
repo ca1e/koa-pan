@@ -40,7 +40,7 @@ class TokenService {
   static async getbdinfo(username, uk) {
     let bdinfo = 3
     const user = Mock.finduserbyname(username)
-    if(user.uks.filter(u=>u === uk)>0){
+    if(user.uks.filter(u=>u === uk).length>0){
       bdinfo = Mock.finduk(uk)
     }
     return bdinfo
