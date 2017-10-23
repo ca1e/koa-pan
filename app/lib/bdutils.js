@@ -29,7 +29,7 @@ class BDUtils {
     }
     return result
   }
-  async getbdsToekn() {
+  async getbdsToken() {
     let result = ''
     try {
       const c = await request.get(PANURL).set('Cookie', this.cookie)
