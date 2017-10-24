@@ -12,7 +12,7 @@ class BDUtils {
     this.bdstoken = ''
   }
   async getUK() {
-    let result = ''
+    let result = 'ok'
     try {
       const c = await request.get(PANURL).set('Cookie', this.cookie)
       const $ = cheerio.load(c.text)

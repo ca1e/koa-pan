@@ -18,6 +18,15 @@ class UserAPI{
     }
     return rlt
   }
+  static async bind(name, ukinfo) {
+    let rlt = 5
+    if(!Mock.finduk(ukinfo.uk)) {
+      Mock.addyk(ukinfo.uk, ukinfo.cookie)
+      Mock.useradduk(name, ukinfo.uk)
+      rlt = ukinfo.uk
+    }
+    return rlt
+  }
   static async ukinuser(name, uk) {
     let rlt = 0
     const user = Mock.finduserbyname(name)

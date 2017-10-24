@@ -43,6 +43,29 @@ class UserCtrl {
       }
     }
   }
+  static async binding(ctx) {
+    const ctx_query = ctx.query
+    const ctx_body = ctx.request.body
+    const token = ctx_query.token
+    const cookies = ctx_body.cookies
+
+    let result = -1
+    ctx.body = ResponseInfo.failedresponse(result, COMMON_ERROR[Math.abs(result)])
+
+    if(token && cookies) {
+      const username = await TokenService.token2user(token)
+      if(username){
+        result = await UserService.binding(username, cookies)
+        if(typeof result != 'number') {
+          ctx.body = ResponseInfo.successresponse({uk: result})
+          return
+        }
+      }else{
+        result = 1
+      }
+      ctx.body = ResponseInfo.failedresponse(result, USER_ERROR[result])
+    }
+  }
   static async userlist(ctx) {
     const ctx_query = ctx.query
     const token = ctx_query.token

@@ -8,6 +8,7 @@ const router = Router({
 
 router.post('/signup', UserCtrl.signup)
 .post('/login', UserCtrl.login)
+.post('/binding', UserCtrl.binding)
 .get('/userlist', UserCtrl.userlist)
 .get('/userinfo', PanCtrl.userinfo)
 .get('/filelist', PanCtrl.filelist)

@@ -1,15 +1,15 @@
 let g_users = [
   {
-    name: 'admin',
-    passwd: '123456',
-    uks: ['xxx']
+    name: 'test',
+    passwd: 'test',
+    uks: []
   }
 ]
 
 let g_bds = [
   {
-    uk:'xxx',
-    cookie: 'BBQAAAAAAAAAAAAAAAAAAAAAA',
+    uk:'xxxx',
+    cookie: 'BBQAAA',
   }
 ]
 
@@ -31,10 +31,28 @@ class Mock {
     }
     return user
   }
+  static useradduk(username, uk) {
+    let user = null
+    const users = g_users.filter(u=>u.name === username)
+    if(users.length>0){
+      user = users[0]
+      user.uks.push(uk)
+    }
+    return user
+  }
+  static addyk(uk, cookie) {
+    const ukinfo = {
+      uk: uk,
+      cookie: cookie,
+      uks: []
+    }
+    g_bds.push(ukinfo)
+    return 0
+  }
   static finduk(uk) {
     let bdinfo = null
-    const bds = bdinfo = g_bds.filter(u=>u.uk === uk)
-    if(bdinfo.length>0){
+    const bds = g_bds.filter(u=>u.uk === uk)
+    if(bds.length>0){
       bdinfo = bds[0]
     }
     return bdinfo
