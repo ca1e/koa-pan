@@ -44,6 +44,7 @@ class PanService {
           const clinks = rlt.urls.map(u=>u.url)
           links[file.server_filename] = clinks
         }
+        links = { links: links }
       }
       result = links
     }catch (e) {console.error(e)
