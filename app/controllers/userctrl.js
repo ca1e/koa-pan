@@ -52,12 +52,12 @@ class UserCtrl {
 
     if(token) {
       const username = await TokenService.token2user(token)
-      if(!username){
-        result = 1
-        ctx.body = ResponseInfo.failedresponse(result, USER_ERROR[result])
-      }else{
+      if(username){
         const userlist = await UserService.userlist(username)
         ctx.body = ResponseInfo.successresponse({userlist: userlist})
+      }else{
+        result = 1
+        ctx.body = ResponseInfo.failedresponse(result, USER_ERROR[result])
       }
     }
   }

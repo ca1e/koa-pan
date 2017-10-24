@@ -7,9 +7,10 @@ const router = Router({
 })
 
 router.post('/signup', UserCtrl.signup)
-router.post('/login', UserCtrl.login)
-router.get('/userlist', UserCtrl.userlist)
-router.get('/userinfo', PanCtrl.userinfo)
-router.get('/filelist', PanCtrl.filelist)
+.post('/login', UserCtrl.login)
+.get('/userlist', UserCtrl.userlist)
+.get('/userinfo', PanCtrl.userinfo)
+.get('/filelist', PanCtrl.filelist)
+.post('/filelinks', PanCtrl.filelinks)
 
 export default router

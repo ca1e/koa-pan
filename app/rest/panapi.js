@@ -2,7 +2,7 @@ import superagent from 'superagent'
 const request = superagent.agent()
 
 const PANURL = 'http://pan.baidu.com/api'
-const PCS_BAIDU = 'http://pcs.baidu.com' + '/rest/v2.0/pcs'
+const PCS_BAIDU = 'https://d.pcs.baidu.com' + '/rest/2.0/pcs'
 
 const global_params = {
   channel: 'chunlei',
@@ -46,9 +46,10 @@ class PanAPI {
     return res.body
   }
   static async download(cookies, path) {
-    const res = await request.get(PCS_BAIDU + '/file')
+    const res = await request.post(PCS_BAIDU + '/file')
     .query({
       method: 'locatedownload',
+      app_id: 250528,
       path: path,
       ver: 4.0
     })
