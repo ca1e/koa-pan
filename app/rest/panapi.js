@@ -49,12 +49,12 @@ class PanAPI {
     const res = await request.post(PCS_BAIDU + '/file')
     .query({
       method: 'locatedownload',
-      app_id: 250528,
-      path: path,
-      ver: 4.0
+      app_id: '250528',
+      ver: '4.0',
+      path: path
     })
     .set('Cookie', cookies)
-    return res.body
+    return JSON.parse(res.text)
   }
 }
 

@@ -36,13 +36,16 @@ class PanService {
     let result = 5
     try {
       let o_files = JSON.parse(files)
-// {"fs_id":1028949083563839,"isdir":0,"path":"/PanDownload_v1.4.3.zip","server_filename":"PanDownload_v1.4.3.zip","md5":"a4683d10d559adb74e24957ff0ffec6e"}
-//   {"errno": -4,"message": "处理请求时遇到错误"}
-//   {"errno": 10,"message": "无法处理文件夹"}
-
-      const links = await PanAPI.download(bdinfo.cookie, o_files[0].path)
-      console.log(links)
-      result = {links: {'name': ['link A', 'link B']}}
+      let links = 10
+      if(o_files.filter(f=>f.isdir === 1).length===0){
+        links = {}
+        for(let file of o_files) {
+          const rlt = await PanAPI.download(bdinfo.cookie, file.path)
+          const clinks = rlt.urls.map(u=>u.url)
+          links[file.server_filename] = clinks
+        }
+      }
+      result = links
     }catch (e) {console.error(e)
     }
     return result
