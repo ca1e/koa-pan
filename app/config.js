@@ -6,4 +6,7 @@ export const db = {
     pass: 'dbpass'
 }
 
-export const sec_key = 'my secret appkey!!!DFNU$#@R(*EW3g#$@R)(F)(sdfg@K$)MU@#%RH*FdhgUS';
+export const sec = {
+    key: '<my secret appkey!>',
+    iv: '<offset>'
+}
