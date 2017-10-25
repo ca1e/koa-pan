@@ -50,7 +50,7 @@ class PanAPI {
     .query({
       bdstoken: bdstoken,
       opera: 'delete',
-      async: '2'
+      async: 1
     })
     .type('form').send({
       filelist: JSON.stringify(paths)
@@ -62,7 +62,7 @@ class PanAPI {
     const res = await request.post(PCS_BAIDU + '/file')
     .query({
       method: 'locatedownload',
-      app_id: '250528',
+      app_id: 250528,
       ver: '4.0',
       path: path
     })
