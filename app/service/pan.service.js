@@ -1,4 +1,5 @@
 import PanAPI from '../rest/panapi'
+import BDUtils from '../lib/bdutils'
 
 class PanService {
   static async getinfo(bdinfo) {
@@ -24,9 +25,22 @@ class PanService {
     try {
       result = await PanAPI.list(bdinfo.cookie, path)
       if(result.errno === 0) {
-        result = result.list ? { list: result.list } : result
+        result = result.list ? result.list : result
       }else{
         result = 4
+      }
+    }catch (e) {console.error(e)
+    }
+    return result
+  }
+  static async deletefile(bdinfo, filepath) {
+    let result = { info: [] }
+    try {
+      const bdstoken = new BDUtils(bdinfo.cookie)
+      await bdstoken.getbdsToken()
+      if(bdstoken.bdstoken != '') {
+        result = await PanAPI.del(bdinfo.cookie, bdstoken.bdstoken, [filepath])
+        result = { info: result.info }
       }
     }catch (e) {console.error(e)
     }
@@ -44,7 +58,6 @@ class PanService {
           const clinks = rlt.urls.map(u=>u.url)
           links[file.server_filename] = clinks
         }
-        links = { links: links }
       }
       result = links
     }catch (e) {console.error(e)

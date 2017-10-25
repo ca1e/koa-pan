@@ -12,6 +12,7 @@ router.post('/signup', UserCtrl.signup)
 .get('/userlist', UserCtrl.userlist)
 .get('/userinfo', PanCtrl.userinfo)
 .get('/filelist', PanCtrl.filelist)
+.get('/deleteFile', PanCtrl.deletefile)
 .post('/filelinks', PanCtrl.filelinks)
 
 export default router

@@ -45,6 +45,19 @@ class PanAPI {
     .set('Cookie', cookies)
     return res.body
   }
+  static async del(cookies, bdstoken, paths) {
+    const res = await request.post(PANURL + '/filemanager')
+    .query({
+      bdstoken: bdstoken,
+      opera: 'delete',
+      async: '2'
+    })
+    .type('form').send({
+      filelist: JSON.stringify(paths)
+    })
+    .set('Cookie', cookies)
+    return res.body
+  }
   static async download(cookies, path) {
     const res = await request.post(PCS_BAIDU + '/file')
     .query({

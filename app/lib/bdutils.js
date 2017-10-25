@@ -36,12 +36,12 @@ class BDUtils {
       const $ = cheerio.load(c.text)
       const title = new Buffer(TITLE_BASE64, 'base64').toString()
       if ($('title').text() == title) {
-        const script = $(`script`,'body').last().text().split('&&')[1].split(',')
-        this.bdstoken = script[0].split(`'`)[1]
+        const script = $(`script`,'body').last().html().split(',')[10]
+        this.bdstoken = script.split('"')[3]
       }else{
         result = 'bad cookie'
       }
-    }catch (e) {
+    }catch (e) {console.log(e)
       result = 'err occured'
     }
     return result

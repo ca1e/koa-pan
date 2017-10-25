@@ -51,11 +51,37 @@ class PanCtrl {
         if(typeof bdinfo === 'object'){
           const list = await PanService.getlist(bdinfo, path)
           if(typeof list === 'object') {
-            ctx.body = ResponseInfo.successresponse(list)
+            ctx.body = ResponseInfo.successresponse({ list: list })
           }else{
             result = list
             ctx.body = ResponseInfo.failedresponse(result, FILE_ERROR[result])
           }
+        }else{
+          result = bdinfo
+          ctx.body = ResponseInfo.failedresponse(result, FILE_ERROR[result])
+        }
+      }else{
+        result = 1
+        ctx.body = ResponseInfo.failedresponse(result, USER_ERROR[result])
+      }
+    }
+  }
+  static async deletefile(ctx) {
+    const ctx_query = ctx.query
+    const token = ctx_query.token
+    const uk = ctx_query.uk
+    const filepath = ctx_query.path
+
+    let result = -1
+    ctx.body = ResponseInfo.failedresponse(result, COMMON_ERROR[Math.abs(result)])
+
+    if(token && uk && filepath) {
+      const username = await TokenService.token2user(token)
+      if(username){
+        const bdinfo = await TokenService.getbdinfo(username, uk)
+        if(typeof bdinfo === 'object'){
+          const rlt = await PanService.deletefile(bdinfo, filepath)
+          ctx.body = ResponseInfo.successresponse(rlt)
         }else{
           result = bdinfo
           ctx.body = ResponseInfo.failedresponse(result, FILE_ERROR[result])
@@ -83,7 +109,7 @@ class PanCtrl {
         if(typeof bdinfo === 'object'){
           const links = await PanService.downloads(bdinfo, files)
           if(typeof links === 'object') {
-            ctx.body = ResponseInfo.successresponse(links)
+            ctx.body = ResponseInfo.successresponse({ links: links })
           }else{
             result = links
             ctx.body = ResponseInfo.failedresponse(result, FILE_ERROR[result])
