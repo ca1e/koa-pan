@@ -66,6 +66,32 @@ class PanCtrl {
       }
     }
   }
+  static async createfile(ctx) {
+    const ctx_query = ctx.query
+    const token = ctx_query.token
+    const uk = ctx_query.uk
+    const createpath = ctx_query.path
+
+    let result = -1
+    ctx.body = ResponseInfo.failedresponse(result, COMMON_ERROR[Math.abs(result)])
+
+    if(token && uk && filepath) {
+      const username = await TokenService.token2user(token)
+      if(username){
+        const bdinfo = await TokenService.getbdinfo(username, uk)
+        if(typeof bdinfo === 'object'){
+          const rlt = await PanService.createfile(bdinfo, filepath)
+          ctx.body = ResponseInfo.successresponse(rlt)
+        }else{
+          result = bdinfo
+          ctx.body = ResponseInfo.failedresponse(result, FILE_ERROR[result])
+        }
+      }else{
+        result = 1
+        ctx.body = ResponseInfo.failedresponse(result, USER_ERROR[result])
+      }
+    }
+  }
   static async deletefile(ctx) {
     const ctx_query = ctx.query
     const token = ctx_query.token

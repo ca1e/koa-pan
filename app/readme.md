@@ -41,7 +41,7 @@ bdstoken:<token>
 category:<type>
 num:100
 ```
-* create: /create
+* create[post]: /create
 ```
 bdstoken:<token>
 a:commit
@@ -51,7 +51,7 @@ isdir:1
 block_list:[]
 ```
 
-* filemanager: /filemanager
+* filemanager[post]: /filemanager
 ```
 bdstoken:<token>
 opera:[delete,rename,move,copy,]
@@ -62,7 +62,7 @@ filelist:[{"path":path1,"newname":name1}] // rename
 filelist:[{"path":path1,"dest":dest1,"newname":name1}] // move,copy
 ```
 
-* download: http://pcs.baidu.com/rest/2.0/pcs/file
+* download[post]: http://pcs.baidu.com/rest/2.0/pcs/file
 ```
 method:locatedownload
 path:<path>

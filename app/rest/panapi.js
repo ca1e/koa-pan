@@ -45,6 +45,20 @@ class PanAPI {
     .set('Cookie', cookies)
     return res.body
   }
+  static async create(cookies, bdstoken, path) {
+    const res = await request.post(PANURL + '/create')
+    .query({
+      bdstoken: bdstoken,
+      a: 'commit'
+    })
+    .type('form').send({
+      path: path,
+      isdir: 1,
+      block_list: `[]`
+    })
+    .set('Cookie', cookies)
+    return res.body
+  }
   static async del(cookies, bdstoken, paths) {
     const res = await request.post(PANURL + '/filemanager')
     .query({

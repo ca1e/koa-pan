@@ -33,6 +33,19 @@ class PanService {
     }
     return result
   }
+  static async createfile(bdinfo, filepath) {
+    let result = { info: [] }
+    try {
+      const bdstoken = new BDUtils(bdinfo.cookie)
+      await bdstoken.getbdsToken()
+      if(bdstoken.bdstoken != '') {
+        result = await PanAPI.create(bdinfo.cookie, bdstoken.bdstoken, filepath)
+        result = { path: result.path }
+      }
+    }catch (e) {console.error(e)
+    }
+    return result
+  }
   static async deletefile(bdinfo, filepath) {
     let result = { info: [] }
     try {
