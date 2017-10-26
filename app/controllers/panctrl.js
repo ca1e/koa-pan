@@ -75,12 +75,12 @@ class PanCtrl {
     let result = -1
     ctx.body = ResponseInfo.failedresponse(result, COMMON_ERROR[Math.abs(result)])
 
-    if(token && uk && filepath) {
+    if(token && uk && createpath) {
       const username = await TokenService.token2user(token)
       if(username){
         const bdinfo = await TokenService.getbdinfo(username, uk)
         if(typeof bdinfo === 'object'){
-          const rlt = await PanService.createfile(bdinfo, filepath)
+          const rlt = await PanService.createfile(bdinfo, createpath)
           ctx.body = ResponseInfo.successresponse(rlt)
         }else{
           result = bdinfo

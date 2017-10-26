@@ -34,7 +34,7 @@ class PanService {
     return result
   }
   static async createfile(bdinfo, filepath) {
-    let result = { info: [] }
+    let result = { path: '' }
     try {
       const bdstoken = new BDUtils(bdinfo.cookie)
       await bdstoken.getbdsToken()
