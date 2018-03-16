@@ -62,11 +62,19 @@ filelist:[{"path":path1,"newname":name1}] // rename
 filelist:[{"path":path1,"dest":dest1,"newname":name1}] // move,copy
 ```
 
+* download: /download
+```
+sign: <sign>
+bdstoken:<token>
+timestamp: <timestamp>
+fidlist: [fid1,fid2...]
+type: batch
+```
+
 * download[post]: http://pcs.baidu.com/rest/2.0/pcs/file
 ```
 method:locatedownload
 path:<path>
-app_id:250528
 ver:4.0
 ```
 
@@ -78,7 +86,6 @@ task_ids:(query_task)
 task_id:(cancel_task,delete_task)
 #form
 method:[add_task,*query_task*,*list_task*,*cancel_task*,*delete_task*,]
-app_id:250528
 source_url:<src>
 save_path:<dist path>
 type:[(normal),3(ed2k),4(magnet)]
